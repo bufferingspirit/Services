@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.admin.services.MainActivity">
+
+    <Button
+        android:text="Start Service"
+        android:onClick="startService"
+        android:id="@+id/btnStartNormalService"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"/>
+    <Button
+        android:text="Stop Service"
+        android:onClick="startService"
+        android:id="@+id/btnStopNormalService"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"/>
+    <Button
+        android:text="Start intent Service"
+        android:onClick="startService"
+        android:id="@+id/btnStartIntentService"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"/>
+    <Button
+        android:text="Bind Service"
+        android:onClick="startService"
+        android:id="@+id/btnBindService"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"/>
+    <Button
+        android:text="Unbind Service"
+        android:onClick="startService"
+        android:id="@+id/btnUnbindService"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"/>
+    <EditText
+        android:id="@+id/etNum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:text="Send Int"
+        android:id="@+id/btnSendInt"
+        android:onClick="startService"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
