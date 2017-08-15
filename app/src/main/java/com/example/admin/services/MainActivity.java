@@ -19,7 +19,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     MyBoundService boundService;
-    Boolean isBound = false;
+    int randnum;
+    boolean isBound = false;
     EditText etNum;
 
     @Override
@@ -27,13 +28,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         etNum = (EditText) findViewById(R.id.etNum);
+        Intent boundIntent = new Intent(this, MyBoundService.class);
+        bindService(boundIntent, serviceConnection, Context.BIND_AUTO_CREATE);
     }
 
     public void startService(View view){
         Intent normalIntent = new Intent(this, MyNormalService.class);
         Intent intIntent = new Intent(this, MyIntentService.class);
+        Intent intent = new Intent(this, Main2Activity.class);
+        Intent musicIntent = new Intent(this, MusicActivity.class);
 
         Intent boundIntent = new Intent(this, MyBoundService.class);
+
 
         switch(view.getId()){
             case R.id.btnStartNormalService:
@@ -49,7 +55,9 @@ public class MainActivity extends AppCompatActivity {
                 startService(intIntent);
                 break;
             case R.id.btnBindService:
-                bindService(boundIntent, serviceConnection, Context.BIND_AUTO_CREATE);
+                if(!isBound) {
+                    bindService(boundIntent, serviceConnection, Context.BIND_AUTO_CREATE);
+                }
                 break;
             case R.id.btnUnbindService:
                 if(isBound) {
@@ -58,9 +66,19 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
             case R.id.btnSendInt:
-                Intent intent = new Intent(this, Main2Activity.class);
-                intent.putExtra("data", etNum.getText().toString());
+                final Bundle bundle = new Bundle();
+                bundle.putSerializable("data", etNum.getText().toString());
+                intent.putExtras(bundle);
                 startActivity(intent);
+                break;
+            case R.id.btnRandomStrings:
+                Bundle bund = new Bundle();
+                bund.putSerializable("data", randnum);
+                intent.putExtras(bund);
+                startActivity(intent);
+                break;
+            case R.id.btnGoToMusic:
+                startActivity(musicIntent);
                 break;
         }
     }
@@ -70,9 +88,8 @@ public class MainActivity extends AppCompatActivity {
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
             MyBoundService.MyBinder myBinder = (MyBoundService.MyBinder) iBinder;
             boundService = myBinder.getService();
+            randnum = boundService.getRandomData();
             isBound = true;
-            Log.d(TAG, "onServiceConnected: "+boundService.getRandomData());
-
         }
 
         @Override

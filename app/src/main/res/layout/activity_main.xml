@@ -48,5 +48,17 @@
         android:onClick="startService"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <Button
+        android:text="Random Strings"
+        android:id="@+id/btnRandomStrings"
+        android:onClick="startService"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:text="Go To Music"
+        android:id="@+id/btnGoToMusic"
+        android:onClick="startService"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

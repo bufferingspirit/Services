@@ -31,7 +31,19 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".Main2Activity"></activity>
+        <activity android:name=".Main2Activity" />
+
+        <service
+            android:name=".Services.boundStringService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".MusicActivity" />
+
+        <service
+            android:name=".Services.TestService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>
