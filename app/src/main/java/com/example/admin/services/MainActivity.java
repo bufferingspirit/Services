@@ -1,5 +1,7 @@
 package com.example.admin.services;
 
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +15,7 @@ import android.widget.EditText;
 
 import com.example.admin.services.Services.MyBoundService;
 import com.example.admin.services.Services.MyIntentService;
+import com.example.admin.services.Services.MyJobService;
 import com.example.admin.services.Services.MyNormalService;
 
 public class MainActivity extends AppCompatActivity {
@@ -79,6 +82,21 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.btnGoToMusic:
                 startActivity(musicIntent);
+                break;
+            case R.id.btnScheduleService:
+                ComponentName serviceComponent = new ComponentName(this, MyJobService.class);
+                JobInfo.Builder jobInfo = new JobInfo.Builder(0,serviceComponent);
+
+                jobInfo.setMinimumLatency(100);
+                if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M){
+                    Log.d(TAG, "Is Supported");
+                    JobScheduler jobScheduler = (JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE);
+                    //JobScheduler jobScheduler = getSystemService(JobScheduler.class);
+                    jobScheduler.schedule(jobInfo.build());
+                }
+                else{
+                    Log.d(TAG, "Not Supported");
+                }
                 break;
         }
     }

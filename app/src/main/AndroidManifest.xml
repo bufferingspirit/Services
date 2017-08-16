@@ -43,7 +43,26 @@
         <service
             android:name=".Services.TestService"
             android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".Services.MyScheduleService"
+            android:enabled="true"
             android:exported="true"></service>
+        <service
+            android:name=".Services.MyJobService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            >
+
+        </service>
+
+        <receiver android:name="com.example.admin.MusicReceiver">
+            <intent-filter>
+                <action android:name="StopTask"></action>
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

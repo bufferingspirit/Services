@@ -97,4 +97,10 @@ public class Main2Activity extends AppCompatActivity {
 
         }
     };
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //unbind services here
+    }
 }
